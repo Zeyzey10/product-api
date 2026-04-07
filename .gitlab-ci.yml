@@ -30,7 +30,7 @@ docker:
   variables:
     DOCKER_TLS_CERTDIR: ""
   script:
-    - docker login -u zeynadieng -p $Nabounabou10
+    - docker login -u zeynadieng -p $DOCKER_PASSWORD
     - docker build -t zeynadieng/product-api:latest .
     - docker push zeynadieng/product-api:latest
   dependencies:
