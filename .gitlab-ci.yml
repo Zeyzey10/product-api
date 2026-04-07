@@ -5,7 +5,6 @@ stages:
 
 test:
   stage: test
-  image: maven:3.9-eclipse-temurin-17
   script:
     - echo "Tests OK"
   only:
@@ -15,15 +14,11 @@ build:
   stage: build
   image: maven:3.9-eclipse-temurin-17
   script:
-    - mvn clean package -DskipTests
+    - mvn clean package -DskipTests -q
   artifacts:
     paths:
       - target/*.jar
     expire_in: 1 hour
-  cache:
-    key: "$CI_COMMIT_REF_SLUG"
-    paths:
-      - .m2/repository
   only:
     - develop
 
@@ -34,6 +29,7 @@ docker:
     - docker:dind
   variables:
     DOCKER_TLS_CERTDIR: ""
+    DOCKER_HOST: tcp://docker:2375
   script:
     - docker login -u zeynadieng -p $DOCKER_PASSWORD
     - docker build -t zeynadieng/product-api:latest .
