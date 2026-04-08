@@ -7,7 +7,7 @@
         </http>
         <format>
             <label>
-                <pattern>app=${spring.application.name}</pattern>
+                <pattern>app=product-api</pattern>
             </label>
             <message>
                 <pattern>%-5level [%thread] %logger{36} - %msg%n</pattern>
