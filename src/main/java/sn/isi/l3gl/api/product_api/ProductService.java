@@ -1,41 +1,29 @@
 package sn.isi.l3gl.api.product_api;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import sn.isi.l3gl.api.entity.Product;
-import sn.isi.l3gl.api.repository.ProductRepository;
-
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class ProductService {
-
     private final ProductRepository productRepository;
 
-    public List<Product> findAll() {
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
+    public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    public Product findById(Long id) {
-        return productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found: " + id));
-    }
-
-    public Product save(Product product) {
+    public Product createProduct(Product product) {
         return productRepository.save(product);
     }
 
-    public Product update(Long id, Product product) {
-        Product existing = findById(id);
-        existing.setName(product.getName());
-        existing.setDescription(product.getDescription());
-        existing.setPrice(product.getPrice());
-        existing.setQuantity(product.getQuantity());
-        return productRepository.save(existing);
+    public Product getProductById(Long id) {
+        return productRepository.findById(id).orElse(null);
     }
 
-    public void delete(Long id) {
+    public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
 }

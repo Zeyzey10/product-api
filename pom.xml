@@ -70,11 +70,7 @@
 		</dependency>
 
         <!-- product-core depuis Nexus -->
-        <dependency>
-            <groupId>sn.isi.l3gl.core</groupId>
-            <artifactId>product-core</artifactId>
-            <version>0.3.1</version>
-        </dependency>
+       
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
